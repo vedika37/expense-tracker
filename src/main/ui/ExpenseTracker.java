@@ -23,7 +23,7 @@ public class ExpenseTracker {
 
     // MODIFIES: this
     // EFFECTS: processes user input
-    // source:
+    // source: TellerApp project
     void runAccount() {
         Scanner sc = new Scanner(System.in);
 
@@ -73,6 +73,9 @@ public class ExpenseTracker {
         System.out.println("\tq -> quit");
     }
 
+    // REQUIRES : category must be among displayed options
+    // MODIFIES : this
+    // EFFECTS : creates a transaction by accepting data from the user and adds it to the list
     private void createTransaction() {
         Scanner sc = new Scanner(System.in);
 
@@ -83,6 +86,9 @@ public class ExpenseTracker {
 
         if (s.equals("e")) {
             isExpense = true;
+        } else if (!(s.equals("i"))) {
+            System.out.println("Invalid input!");
+            runAccount();
         }
 
         System.out.print("Enter amount: $");
@@ -90,8 +96,7 @@ public class ExpenseTracker {
 
         String category = null;
         if (isExpense) {
-            System.out.println("Choose category: ");
-            System.out.println("HOUSING, EDUCATION, FOOD,\nTRANSPORT, HEALTH, UTILITIES,\nRECREATION, MISC, SAVINGS");
+            displayCategories();
             sc.nextLine();
             category = sc.next().toUpperCase();
         }
@@ -102,13 +107,12 @@ public class ExpenseTracker {
 
         Transaction t = new Transaction(isExpense, amount, category, description);
 
-        tl.addTransaction(t);
-
-        System.out.println("Transaction added!");
-
+        addTransactionToList(t);
     }
 
-    void removeTransaction() {
+    // MODIFIES: this
+    // EFFECTS: removes a chosen transaction from the list
+    private void removeTransaction() {
 
         int flag = 0;
 
@@ -132,6 +136,7 @@ public class ExpenseTracker {
         }
     }
 
+    // EFFECTS: processes user command
     private void viewTransactions() {
         Scanner sc = new Scanner(System.in);
 
@@ -158,7 +163,8 @@ public class ExpenseTracker {
         }
     }
 
-    void viewAllTransactions() {
+    // EFFECTS: displays all transactions
+    private void viewAllTransactions() {
         if (tl.getTransactions().isEmpty()) {
             System.out.println("No transactions yet!");
         }
@@ -186,7 +192,8 @@ public class ExpenseTracker {
         }
     }
 
-    void viewIncome() {
+    // EFFECTS: displays all income transactions
+    private void viewIncome() {
         int flag = 0;
 
         for (Transaction t : tl.getTransactions()) {
@@ -204,7 +211,8 @@ public class ExpenseTracker {
         }
     }
 
-    void viewAllExpenses() {
+    // EFFECTS: displays all expenses
+    private void viewAllExpenses() {
         int flag = 0;
 
         for (Transaction t : tl.getTransactions()) {
@@ -223,10 +231,10 @@ public class ExpenseTracker {
         }
     }
 
+    // EFFECTS: displays expenses of a particular category
     private void viewExpensesByCategory() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter the category of expenses you want to view:");
-        System.out.println("HOUSING, EDUCATION, FOOD,\nTRANSPORT, HEALTH, UTILITIES,\nRECREATION, MISC, SAVINGS");
+        displayCategories();
         String category = sc.next().toUpperCase();
 
         int flag = 0;
@@ -247,11 +255,26 @@ public class ExpenseTracker {
         }
     }
 
+    // EFFECTS: displays account balance
     private void viewBalance() {
         if (tl.getBalance() >= 0) {
             System.out.println("Balance = $" + tl.getBalance());
         } else {
             System.out.println("Balance = -$" + tl.getBalance());
         }
+    }
+
+    // EFFECTS: displays available categories
+    private void displayCategories() {
+        System.out.println("Choose category: ");
+        System.out.println("HOUSING, EDUCATION, FOOD,\nTRANSPORT, HEALTH, UTILITIES,\nRECREATION, MISC, SAVINGS");
+    }
+
+    // MODIFIES: this
+    // EFFECTS: adds transaction to transaction list
+    private void addTransactionToList(Transaction t) {
+        tl.addTransaction(t);
+
+        System.out.println("Transaction added!");
     }
 }

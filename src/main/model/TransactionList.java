@@ -33,7 +33,7 @@ public class TransactionList {
     // EFFECTS: removes a transaction to the transaction list and deducts its amount from the balance
     public void removeTransaction(Transaction t) {
 
-        changeIndices(t.getNumber());
+        changeNumber(t.getNumber());
 
         transactions.remove(t);
 
@@ -44,7 +44,9 @@ public class TransactionList {
         }
     }
 
-    public void changeIndices(int index) {
+    // MODIFIES : this
+    // EFFECTS: reduces transaction numbers by 1 in the list after a particular index
+    public void changeNumber(int index) {
         for (int i = 0; i < transactions.size(); i++) {
             if (transactions.get(i).getNumber() > index) {
                 transactions.get(i).setNumber(i);

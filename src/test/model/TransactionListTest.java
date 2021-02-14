@@ -5,7 +5,11 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class TransactionListTest {
+/*
+ * Unit tests for the TransactionList class.
+ */
+
+class TransactionListTest {
 
     TransactionList transactionList;
     Transaction transaction1;
@@ -90,5 +94,21 @@ public class TransactionListTest {
 
         assertEquals(2, transactionList.getTransactions().size());
         assertEquals(88.50, transactionList.getBalance());
+    }
+
+    @Test
+    public void testRemoveTransactionAllTransactions(){
+        transactionList.addTransaction(transaction1);
+        transactionList.addTransaction(transaction2);
+        transactionList.addTransaction(transaction3);
+        transactionList.addTransaction(transaction4);
+
+        transactionList.removeTransaction(transaction1);
+        transactionList.removeTransaction(transaction2);
+        transactionList.removeTransaction(transaction3);
+        transactionList.removeTransaction(transaction4);
+
+        assertEquals(0, transactionList.getTransactions().size());
+        assertEquals(0, transactionList.getBalance());
     }
 }

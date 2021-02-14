@@ -12,7 +12,8 @@ class TransactionTest {
     Transaction transaction3;
 
     @BeforeEach
-    public void setup(){
+    public void setUp(){
+        Transaction.resetNextTransactionNumber();
         transaction1 = new Transaction(false, 200, null, "tutoring");
         transaction2 = new Transaction(true, 11.50, "FOOD", "lunch");
         transaction3 = new Transaction(true, 109.90, "EDUCATION", "PSYC textbook");
@@ -21,7 +22,7 @@ class TransactionTest {
     @Test
     public void testGetNumber(){
         assertEquals(1, transaction1.getNumber());
-        assertEquals(2,transaction2.getNumber());
+        assertEquals(2, transaction2.getNumber());
         assertEquals(3, transaction3.getNumber());
     }
 
@@ -34,7 +35,7 @@ class TransactionTest {
 
     @Test
     public void testGetCategory(){
-        assertEquals(null, transaction1.getCategory());
+        assertNull(transaction1.getCategory());
         assertEquals("FOOD", transaction2.getCategory());
         assertEquals("EDUCATION", transaction3.getCategory());
     }
@@ -45,5 +46,4 @@ class TransactionTest {
         assertEquals("lunch", transaction2.getDescription());
         assertEquals("PSYC textbook", transaction3.getDescription());
     }
-
 }

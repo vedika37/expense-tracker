@@ -1,5 +1,5 @@
-import model.Transaction;
-import model.TransactionList;
+package model;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +14,7 @@ public class TransactionListTest {
     Transaction transaction4;
 
     @BeforeEach
-    public void setup() {
+    public void setUp() {
         transactionList = new TransactionList();
         transaction1 = new Transaction(false, 200, null, "tutoring");
         transaction2 = new Transaction(true, 11.50, "FOOD", "lunch");
@@ -76,5 +76,19 @@ public class TransactionListTest {
         transactionList.removeTransaction(transaction4);
         assertEquals(1, transactionList.getTransactions().size());
         assertEquals(200, transactionList.getBalance());
+    }
+
+    @Test
+    public void testRemoveTransactionMultipleTransactions(){
+        transactionList.addTransaction(transaction1);
+        transactionList.addTransaction(transaction2);
+        transactionList.addTransaction(transaction3);
+        transactionList.addTransaction(transaction4);
+
+        transactionList.removeTransaction(transaction1);
+        transactionList.removeTransaction(transaction3);
+
+        assertEquals(2, transactionList.getTransactions().size());
+        assertEquals(88.50, transactionList.getBalance());
     }
 }

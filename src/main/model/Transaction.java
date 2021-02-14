@@ -1,13 +1,12 @@
 package model;
 
 public class Transaction {
-
     private static int nextTransactionNumber = 1;
-    private int number;
-    private boolean isExpense;
-    private double amount;
-    private String category;
-    private String description;
+    private final int number;
+    private final boolean isExpense;
+    private final double amount;
+    private final String category;
+    private final String description;
 
     public Transaction(boolean isExpense, double amount, String category, String description) {
         this.number = nextTransactionNumber++;
@@ -16,6 +15,7 @@ public class Transaction {
         this.category = category;
         this.description = description;
     }
+
 
     public int getNumber() {
         return this.number;
@@ -37,4 +37,7 @@ public class Transaction {
         return this.description;
     }
 
+    public static void resetNextTransactionNumber() {
+        nextTransactionNumber = 1;
+    }
 }

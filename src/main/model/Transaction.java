@@ -2,32 +2,39 @@ package model;
 
 public class Transaction {
 
-    double amount;
-    String category;
-    String date;
-    String description;
+    private static int nextTransactionNumber = 1;
+    private int number;
+    private boolean isExpense;
+    private double amount;
+    private String category;
+    private String description;
 
-    public Transaction(double amount, String category, String date, String description) {
+    public Transaction(boolean isExpense, double amount, String category, String description) {
+        this.number = nextTransactionNumber++;
+        this.isExpense = isExpense;
         this.amount = amount;
         this.category = category;
-        this.date = date;
         this.description = description;
     }
 
-    double getAmount() {
+    public int getNumber() {
+        return this.number;
+    }
+
+    public boolean getIsExpense() {
+        return this.isExpense;
+    }
+
+    public double getAmount() {
         return this.amount;
     }
 
-    String getDate() {
-        return this.date;
+    public String getCategory() {
+        return this.category;
     }
 
-    String getDescription() {
-
+    public String getDescription() {
         return this.description;
     }
 
-    void addTransaction(){
-
-    }
 }

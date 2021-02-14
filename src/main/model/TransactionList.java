@@ -52,7 +52,7 @@ public class TransactionList {
                 transactions.get(i).setNumber(i);
             }
         }
-
+        Transaction.resetNextTransactionNumber(transactions.size());
     }
 
     public ArrayList<Transaction> getTransactions() {
@@ -60,6 +60,6 @@ public class TransactionList {
     }
 
     public double getBalance() {
-        return balance;
+        return Math.round(balance * 100) / 100.;
     }
 }

@@ -23,13 +23,6 @@ class TransactionTest {
         transaction3 = new Transaction(true, 109.90, "EDUCATION", "PSYC textbook");
     }
 
-  /*  @Test
-    public void testGetNumber(){
-        assertEquals(1, transaction1.getNumber());
-        assertEquals(2, transaction2.getNumber());
-        assertEquals(3, transaction3.getNumber());
-    }
-*/
     @Test
     public void testIsExpense(){
         assertFalse(transaction1.getIsExpense());

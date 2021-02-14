@@ -47,7 +47,7 @@ class TransactionListTest {
     public void testAddTransactionIncome() {
         transactionList.addTransaction(transaction1);
         assertEquals(1, transactionList.getTransactions().size());
-        assertEquals(200, transactionList.getBalance());
+        assertEquals(200.00, transactionList.getBalance());
     }
 
     @Test
@@ -110,5 +110,21 @@ class TransactionListTest {
 
         assertEquals(0, transactionList.getTransactions().size());
         assertEquals(0, transactionList.getBalance());
+    }
+
+    @Test
+    public void testAddTransactionAfterRemoving(){
+        transactionList.addTransaction(transaction1);
+        transactionList.addTransaction(transaction2);
+        transactionList.addTransaction(transaction3);
+
+        transactionList.removeTransaction(transaction1);
+        transactionList.removeTransaction(transaction2);
+
+        transactionList.addTransaction(transaction4);
+
+        assertEquals(2, transactionList.getTransactions().size());
+        assertEquals(-9.90, transactionList.getBalance());
+
     }
 }

@@ -73,7 +73,6 @@ public class ExpenseTracker {
         System.out.println("\tq -> quit");
     }
 
-    // REQUIRES : category must be among displayed options
     // MODIFIES : this
     // EFFECTS : creates a transaction by accepting data from the user and adds it to the list
     private void createTransaction() {
@@ -266,7 +265,7 @@ public class ExpenseTracker {
 
     // EFFECTS: displays available categories
     private void displayCategories() {
-        System.out.println("Choose category: ");
+        System.out.println("Choose category (or add any required category): ");
         System.out.println("HOUSING, EDUCATION, FOOD,\nTRANSPORT, HEALTH, UTILITIES,\nRECREATION, MISC, SAVINGS");
     }
 

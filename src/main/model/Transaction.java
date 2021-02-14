@@ -46,5 +46,10 @@ public class Transaction {
         this.number = n;
     }
 
+    // MODIFIES: this
+    // EFFECTS: resets the next transaction number
+    public static void resetNextTransactionNumber(int n) {
+        nextTransactionNumber = n;
+    }
 
 }

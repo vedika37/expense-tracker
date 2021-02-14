@@ -1,13 +1,18 @@
 package model;
 
+/* Represents a transaction
+ */
+
 public class Transaction {
     private static int nextTransactionNumber = 1;
-    private final int number;
-    private final boolean isExpense;
-    private final double amount;
-    private final String category;
-    private final String description;
+    private int number;
+    private boolean isExpense;
+    private double amount;
+    private String category;
+    private String description;
 
+    // Constructs a transaction
+    // EFFECTS: initializes a transaction as an expense/income with given, amount, category and description
     public Transaction(boolean isExpense, double amount, String category, String description) {
         this.number = nextTransactionNumber++;
         this.isExpense = isExpense;
@@ -37,7 +42,9 @@ public class Transaction {
         return this.description;
     }
 
-    public static void resetNextTransactionNumber() {
-        nextTransactionNumber = 1;
+    public void setNumber(int n) {
+        this.number = n;
     }
+
+
 }

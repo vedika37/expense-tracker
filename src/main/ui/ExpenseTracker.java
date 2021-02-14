@@ -5,17 +5,25 @@ import model.TransactionList;
 
 import java.util.Scanner;
 
+/*
+ * Represents an expense tracker application
+ */
+
 public class ExpenseTracker {
 
     private String userName;
     private TransactionList tl;
 
-
+    // Constructs an expense tracker account
+    // EFFECTS: creates an expense tracker account with a user name and an empty list of transactions
     public ExpenseTracker(String userName) {
         this.userName = userName;
         tl = new TransactionList();
     }
 
+    // MODIFIES: this
+    // EFFECTS: processes user input
+    // source:
     void runAccount() {
         Scanner sc = new Scanner(System.in);
 

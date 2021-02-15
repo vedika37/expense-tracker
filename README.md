@@ -3,9 +3,12 @@
 ## Expense Tracker
 
 
-- this application will help a person **keep track of their expenses** by *recording their transactions* and allowing them to *categorize* the ways in which they spend their money
-- it can be used by people who need to track their finances and have a representation of how they are spending their money
-- this project is of interest to me because of its practicality and usefulness
+This application will help people **keep track of their expenses**. A user will be able to *record their transactions*
+and *categorize* them. They will also be able to view transactions by their category and view their account balance. 
+This will let them have a visual representation of how they spend their money.
+This expense tracker can be used by anyone who wants to keep track of their finances and will help them see how their money is being spent.
+This particular project was of interest to me because of its practicality and usefulness and is something I see myself using as well.
+
 
 
 ## User Stories

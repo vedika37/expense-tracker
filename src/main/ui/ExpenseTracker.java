@@ -265,7 +265,7 @@ public class ExpenseTracker {
 
     // EFFECTS: displays available categories
     private void displayCategories() {
-        System.out.println("Choose category (or add any required category): ");
+        System.out.println("Choose category (or enter your own category): ");
         System.out.println("HOUSING, EDUCATION, FOOD,\nTRANSPORT, HEALTH, UTILITIES,\nRECREATION, MISC, SAVINGS");
     }
 

@@ -18,3 +18,5 @@ This particular project was of interest to me because of its practicality and us
 - As a user, I want to be able to view my transaction history, or just incomes or expenses
 - As a user, I want to be able to select a category and view all transactions of that category
 - As a user, I want to be able to view the total balance in my account
+- As a user, I want to be able to save transactions to file
+- As a user, I want to be able to load my transaction list from file

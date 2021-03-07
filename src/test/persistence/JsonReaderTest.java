@@ -10,8 +10,10 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
-/* TODO */
-// source: TODO
+/*
+ * Unit tests for the JsonReader class.
+ */
+// source: JsonSerializationDemo
 
 class JsonReaderTest extends JsonTest {
 

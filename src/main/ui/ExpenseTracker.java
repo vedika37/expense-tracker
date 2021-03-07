@@ -21,8 +21,8 @@ public class ExpenseTracker {
     private JsonReader jsonReader;
 
     // Constructs an expense tracker account
-    // EFFECTS: creates an expense tracker account with a user name and an empty list of transactions TODO
-    // source: TODO
+    // EFFECTS: creates an expense tracker account with a user name and an empty list of transactions
+    // source: JsonSerializationDemo
     public ExpenseTracker(String userName) {
         tl = new TransactionList(userName);
         jsonWriter = new JsonWriter(JSON_STORE);
@@ -294,7 +294,7 @@ public class ExpenseTracker {
     }
 
     // EFFECTS: saves the transaction list to file
-    // source: TODO
+    // source: JsonSerializationDemo
     private void saveTransactionList() {
         try {
             jsonWriter.open();
@@ -308,7 +308,7 @@ public class ExpenseTracker {
 
     // MODIFIES: this
     // EFFECTS: loads transaction list from file
-    // source: TODO
+    // source: JsonSerializationDemo
     private void loadTransactionList() {
         try {
             tl = jsonReader.read();

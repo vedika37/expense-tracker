@@ -12,7 +12,7 @@ import java.nio.file.Paths;
 import java.util.stream.Stream;
 
 // Represents a reader that reads transactions from JSON data stored in file
-// source: TODO
+// source: JsonSerializationDemo
 public class JsonReader {
     private final String source;
 

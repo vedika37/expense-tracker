@@ -4,8 +4,7 @@ import model.Transaction;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-/* TODO */
-// source: TODO
+// source: JsonSerializationDemo
 public class JsonTest {
     protected void checkTransaction(boolean isExpense, double amount,
                                     String category, String description, Transaction transaction) {

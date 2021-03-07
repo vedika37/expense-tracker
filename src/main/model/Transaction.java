@@ -4,8 +4,9 @@ package model;
  */
 
 import org.json.JSONObject;
+import persistence.Writable;
 
-public class Transaction {
+public class Transaction implements Writable {
     private static int nextTransactionNumber = 1;
     private int number;
     private boolean isExpense;
@@ -55,8 +56,8 @@ public class Transaction {
     }
 
 
-    // EFFECTS: TODO
-    // source: TODO
+    // source: JsonSerializationDemo
+    @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("number", number);

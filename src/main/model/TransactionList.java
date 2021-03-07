@@ -2,6 +2,7 @@ package model;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import persistence.Writable;
 
 import java.util.ArrayList;
 
@@ -9,7 +10,7 @@ import java.util.ArrayList;
  * including a list of transactions and the account balance
  */
 
-public class TransactionList {
+public class TransactionList implements Writable {
 
     private String userName;
     private ArrayList<Transaction> transactions;
@@ -76,8 +77,8 @@ public class TransactionList {
         return transactions.size();
     }
 
-    // EFFECTS: TODO
-    // source: TODO
+    // source: JsonSerializationDemo
+    @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("user name", userName);
@@ -86,7 +87,7 @@ public class TransactionList {
     }
 
     // EFFECTS: returns transactions in this transaction list as a JSON array
-    // source: TODO
+    // source: JsonSerializationDemo
     private JSONArray transactionListToJson() {
         JSONArray jsonArray = new JSONArray();
 

@@ -1,5 +1,8 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 /* Represents the user's transactions,
@@ -8,11 +11,13 @@ import java.util.ArrayList;
 
 public class TransactionList {
 
+    private String userName;
     private ArrayList<Transaction> transactions;
     private double balance;
 
     // EFFECTS: creates an empty transaction list with balance set to zero
-    public TransactionList() {
+    public TransactionList(String userName) {
+        this.userName = userName;
         transactions = new ArrayList<>();
         balance = 0.0;
     }
@@ -55,6 +60,10 @@ public class TransactionList {
         Transaction.resetNextTransactionNumber(transactions.size());
     }
 
+    public String getUserName() {
+        return userName;
+    }
+
     public ArrayList<Transaction> getTransactions() {
         return transactions;
     }
@@ -62,4 +71,30 @@ public class TransactionList {
     public double getBalance() {
         return Math.round(balance * 100) / 100.;
     }
+
+    public int getNumber() {
+        return transactions.size();
+    }
+
+    // EFFECTS: TODO
+    // source: TODO
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("user name", userName);
+        json.put("transactions", transactionListToJson());
+        return json;
+    }
+
+    // EFFECTS: returns transactions in this transaction list as a JSON array
+    // source: TODO
+    private JSONArray transactionListToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Transaction t : this.transactions) {
+            jsonArray.put(t.toJson());
+        }
+
+        return jsonArray;
+    }
+
 }

@@ -3,6 +3,8 @@ package model;
 /* Represents a transaction
  */
 
+import org.json.JSONObject;
+
 public class Transaction {
     private static int nextTransactionNumber = 1;
     private int number;
@@ -52,4 +54,16 @@ public class Transaction {
         nextTransactionNumber = n;
     }
 
+
+    // EFFECTS: TODO
+    // source: TODO
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("number", number);
+        json.put("is it an expense?", isExpense);
+        json.put("amount", amount);
+        json.put("category", category);
+        json.put("description", description);
+        return json;
+    }
 }

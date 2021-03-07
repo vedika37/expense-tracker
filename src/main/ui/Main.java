@@ -12,7 +12,6 @@ public class Main {
         System.out.println("Enter your name: ");
         String name = sc.nextLine();
         ExpenseTracker userAccount = new ExpenseTracker(name);
-        userAccount.runAccount();
     }
 
 }

@@ -1,0 +1,19 @@
+{
+  "user name": "Vedika",
+  "transactions": [
+    {
+      "number": 1,
+      "amount": 150,
+      "is it an expense?": true,
+      "description": "BIOL textbook",
+      "category": "EDUCATION"
+    },
+    {
+      "number": 2,
+      "amount": 100,
+      "is it an expense?": false,
+      "description": "pet sitting",
+      "category": ""
+    }
+  ]
+}

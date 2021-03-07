@@ -19,7 +19,7 @@ class TransactionListTest {
 
     @BeforeEach
     public void setUp() {
-        transactionList = new TransactionList();
+        transactionList = new TransactionList("Vedika");
         transaction1 = new Transaction(false, 200, null, "tutoring");
         transaction2 = new Transaction(true, 11.50, "FOOD", "lunch");
         transaction3 = new Transaction(true, 109.90, "EDUCATION", "PSYC textbook");

@@ -2,7 +2,11 @@ package ui;
 
 import model.Transaction;
 import model.TransactionList;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 /*
@@ -11,14 +15,19 @@ import java.util.Scanner;
 
 public class ExpenseTracker {
 
-    private String userName;
+    private static final String JSON_STORE = "./data/transactionlist.json";
     private TransactionList tl;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     // Constructs an expense tracker account
-    // EFFECTS: creates an expense tracker account with a user name and an empty list of transactions
+    // EFFECTS: creates an expense tracker account with a user name and an empty list of transactions TODO
+    // source: TODO
     public ExpenseTracker(String userName) {
-        this.userName = userName;
-        tl = new TransactionList();
+        tl = new TransactionList(userName);
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
+        runAccount();
     }
 
     // MODIFIES: this
@@ -57,9 +66,14 @@ public class ExpenseTracker {
             viewTransactions();
         } else if (command.equals("4")) {
             viewBalance();
+        } else if (command.equals("5")) {
+            saveTransactionList();
+        } else if (command.equals("6")) {
+            loadTransactionList();
         } else {
             System.out.println("Selection not valid!");
         }
+
     }
 
 
@@ -70,6 +84,8 @@ public class ExpenseTracker {
         System.out.println("\t2 -> remove transaction");
         System.out.println("\t3 -> view transactions");
         System.out.println("\t4 -> view balance");
+        System.out.println("\t5 -> save transactions to file");
+        System.out.println("\t6 -> load transactions from file");
         System.out.println("\tq -> quit");
     }
 
@@ -259,7 +275,7 @@ public class ExpenseTracker {
         if (tl.getBalance() >= 0) {
             System.out.println("Balance = $" + tl.getBalance());
         } else {
-            System.out.println("Balance = -$" + tl.getBalance());
+            System.out.println("Balance = -$" + Math.abs(tl.getBalance()));
         }
     }
 
@@ -275,5 +291,30 @@ public class ExpenseTracker {
         tl.addTransaction(t);
 
         System.out.println("Transaction added!");
+    }
+
+    // EFFECTS: saves the transaction list to file
+    // source: TODO
+    private void saveTransactionList() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(tl);
+            jsonWriter.close();
+            System.out.println("Saved " + tl.getUserName() + "'s transactions to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads transaction list from file
+    // source: TODO
+    private void loadTransactionList() {
+        try {
+            tl = jsonReader.read();
+            System.out.println("Loaded " + tl.getUserName() + "'s transactions from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
     }
 }

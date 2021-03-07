@@ -70,7 +70,7 @@ public class TransactionList implements Writable {
     }
 
     public double getBalance() {
-        return Math.round(balance * 100) / 100.;
+        return Math.round(balance * 100) / 100.0;
     }
 
     public int getNumber() {

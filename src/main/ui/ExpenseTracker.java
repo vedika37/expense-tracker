@@ -255,13 +255,15 @@ public class ExpenseTracker {
         int flag = 0;
 
         for (Transaction t : tl.getTransactions()) {
-            if (t.getCategory().equalsIgnoreCase(category)) {
-                System.out.println("Transaction " + t.getNumber());
-                System.out.println("Amount: $" + t.getAmount());
-                System.out.println("Description: " + t.getDescription());
-                System.out.println();
+            if (t.getIsExpense()) {
+                if (t.getCategory().equalsIgnoreCase(category)) {
+                    System.out.println("Transaction " + t.getNumber());
+                    System.out.println("Amount: $" + t.getAmount());
+                    System.out.println("Description: " + t.getDescription());
+                    System.out.println();
 
-                flag++;
+                    flag++;
+                }
             }
         }
 

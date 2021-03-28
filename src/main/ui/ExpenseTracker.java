@@ -7,6 +7,7 @@ import persistence.JsonWriter;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /*
@@ -27,7 +28,11 @@ public class ExpenseTracker {
         tl = new TransactionList(userName);
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
-        runAccount();
+        //runAccount();
+    }
+
+    public TransactionList getTl() {
+        return tl;
     }
 
     // MODIFIES: this
@@ -178,6 +183,38 @@ public class ExpenseTracker {
         }
     }
 
+
+    public ArrayList<String> getTransactionDescriptions() {
+        ArrayList<String> transactionDescriptions = new ArrayList<>();
+
+        if (tl.getTransactions().isEmpty()) {
+            transactionDescriptions.add("No transactions yet!");
+        }
+
+        String transactionDescription = "";
+        String type = "Income";
+        String category = "n/a";
+
+        for (Transaction t : tl.getTransactions()) {
+            transactionDescription = t.getNumber() + ". ";
+            if (t.getIsExpense()) {
+                type = "Expense";
+                category = t.getCategory();
+            }
+            transactionDescription += "Expense/ Income: " + type;
+            transactionDescription += " Amount: " + t.getAmount();
+            transactionDescription += " Category: " + category;
+            transactionDescription += " Description: " + t.getDescription();
+            transactionDescriptions.add(transactionDescription);
+
+        }
+
+//        transactionDescriptions.add("one");
+//        transactionDescriptions.add("two");
+//        transactionDescriptions.add("three");
+        return transactionDescriptions;
+    }
+
     // EFFECTS: displays all transactions
     private void viewAllTransactions() {
         if (tl.getTransactions().isEmpty()) {
@@ -289,7 +326,7 @@ public class ExpenseTracker {
 
     // MODIFIES: this
     // EFFECTS: adds transaction to transaction list
-    private void addTransactionToList(Transaction t) {
+    public void addTransactionToList(Transaction t) {
         tl.addTransaction(t);
 
         System.out.println("Transaction added!");
@@ -297,7 +334,7 @@ public class ExpenseTracker {
 
     // EFFECTS: saves the transaction list to file
     // source: JsonSerializationDemo
-    private void saveTransactionList() {
+    public void saveTransactionList() {
         try {
             jsonWriter.open();
             jsonWriter.write(tl);
@@ -311,12 +348,29 @@ public class ExpenseTracker {
     // MODIFIES: this
     // EFFECTS: loads transaction list from file
     // source: JsonSerializationDemo
-    private void loadTransactionList() {
+    public void loadTransactionList() {
         try {
             tl = jsonReader.read();
             System.out.println("Loaded " + tl.getUserName() + "'s transactions from " + JSON_STORE);
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_STORE);
         }
+    }
+
+    public ArrayList<String> getCategories() {
+        ArrayList<String> categories = new ArrayList<>();
+
+        categories.add("INCOME");
+        categories.add("HOUSING");
+        categories.add("EDUCATION");
+        categories.add("FOOD");
+        categories.add("TRANSPORT");
+        categories.add("HEALTH");
+        categories.add("UTILITIES");
+        categories.add("RECREATION");
+        categories.add("MISC");
+        categories.add("SAVINGS");
+
+        return categories;
     }
 }

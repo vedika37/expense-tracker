@@ -193,19 +193,14 @@ public class ExpenseTracker {
         }
 
         String transactionDescription = "";
-        String type = "Income";
-        String category = "n/a";
+
 
         for (Transaction t : tl.getTransactions()) {
             transactionDescription = t.getNumber() + ". ";
-            if (t.getIsExpense()) {
-                type = "Expense";
-                category = t.getCategory();
-            }
-            transactionDescription += "Expense/ Income: " + type;
-            transactionDescription += " Amount: " + t.getAmount();
-            transactionDescription += " Category: " + category;
             transactionDescription += " Description: " + t.getDescription();
+
+            transactionDescription += " Amount: " + t.getAmount();
+
             transactionDescriptions.add(transactionDescription);
 
         }

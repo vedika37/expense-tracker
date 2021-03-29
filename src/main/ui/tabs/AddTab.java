@@ -1,6 +1,7 @@
 package ui.tabs;
 
 import model.Transaction;
+import model.TransactionList;
 import ui.ExpenseTracker;
 import ui.ExpenseTrackerGUI;
 
@@ -20,10 +21,11 @@ import java.io.File;
 //          sound - http://suavesnippets.blogspot.com/2011/06/add-sound-on-jbutton-click-in-java.html
 public class AddTab extends Tab {
 
-    private final ExpenseTracker expenseTracker;
+    private ExpenseTracker expenseTracker;
+    private TransactionList transactionList;
 
     private JComboBox expenseChoice;
-    private Label amount;
+    private Label amountLabel;
     private Label dollar;
     private JTextField field;
     private Label category;
@@ -40,7 +42,7 @@ public class AddTab extends Tab {
     public AddTab(ExpenseTrackerGUI controller) {
         super(controller);
         expenseTracker = controller.getExpenseTracker();
-
+        transactionList = expenseTracker.getTl();
         setUpAddTab();
     }
 
@@ -76,8 +78,8 @@ public class AddTab extends Tab {
         expenseChoice.setBounds(240, 130, 100, 30);
         expenseChoice.setLightWeightPopupEnabled(false);
 
-        amount = new Label("Amount:");
-        amount.setBounds(100, 100, 600, 30);
+        amountLabel = new Label("Amount:");
+        amountLabel.setBounds(100, 100, 600, 30);
 
         dollar = new Label("$");
         dollar.setBounds(80, 130, 20, 30);
@@ -92,7 +94,7 @@ public class AddTab extends Tab {
     // EFFECTS: adds the components to the Add Transaction Tab
     private void addAllComponents() {
         add(expenseChoice);
-        add(amount);
+        add(amountLabel);
         add(dollar);
         add(field);
         add(description);
@@ -110,7 +112,11 @@ public class AddTab extends Tab {
         if (!field.getText().isEmpty()) {
             Double amount = Double.parseDouble(field.getText());
             String category = (String) categoryChoice.getSelectedItem();
-            Boolean isExpense = (expenseChoice.getSelectedItem() == "Expense");
+            String expenseOrIncome = (String) expenseChoice.getSelectedItem();
+            Boolean isExpense = false;
+            if (expenseOrIncome.equalsIgnoreCase("expense")) {
+                isExpense = true;
+            }
             String description = descriptionField.getText();
             expenseTracker.addTransactionToList(new Transaction(isExpense, amount, category, description));
 

@@ -51,7 +51,7 @@ public class ViewTransactionsTab extends Tab {
 
         }
 
-
+        setPreferredSize(new Dimension(ExpenseTrackerGUI.WIDTH, ExpenseTrackerGUI.HEIGHT));
         setVisible(true);
 
         revalidate();

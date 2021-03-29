@@ -14,7 +14,7 @@ public class ExpenseTrackerGUI extends JFrame {
 
     private ExpenseTracker expenseTracker;
 
-    public static final int WIDTH = 600;
+    public static final int WIDTH = 750;
     public static final int HEIGHT = 400;
 
     private JTabbedPane sidebar;

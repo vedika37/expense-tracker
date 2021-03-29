@@ -41,7 +41,7 @@ public class ViewBalanceTab extends Tab {
 
         setLayout(null);
         add(balanceLabel);
-
+        setPreferredSize(new Dimension(ExpenseTrackerGUI.WIDTH, ExpenseTrackerGUI.HEIGHT));
 
         revalidate();
         repaint();

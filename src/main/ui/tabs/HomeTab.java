@@ -19,6 +19,7 @@ public class HomeTab extends Tab {
     //EFFECTS: constructs a home tab with a greeting and a load button
     public HomeTab(ExpenseTrackerGUI controller) {
         super(controller);
+
         displayWelcomeMessage();
         displayLoadButton();
     }
@@ -48,6 +49,7 @@ public class HomeTab extends Tab {
 
         load.addActionListener(e -> loadTransactions());
 
+        setPreferredSize(new Dimension(ExpenseTrackerGUI.WIDTH, ExpenseTrackerGUI.HEIGHT));
         setLayout(null);
         setVisible(true);
     }

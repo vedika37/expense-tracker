@@ -3,6 +3,7 @@ package ui.tabs;
 import ui.ExpenseTrackerGUI;
 
 import javax.swing.*;
+import java.awt.*;
 
 /*
  * Represents a tab that has a button that allows the user to save to file
@@ -30,6 +31,7 @@ public class SaveTab extends Tab {
 
         save.addActionListener(e -> saveTransactions());
 
+        setPreferredSize(new Dimension(ExpenseTrackerGUI.WIDTH, ExpenseTrackerGUI.HEIGHT));
         setLayout(null);
         setVisible(true);
     }

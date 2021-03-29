@@ -20,7 +20,7 @@ import java.io.File;
 //          sound - http://suavesnippets.blogspot.com/2011/06/add-sound-on-jbutton-click-in-java.html
 public class AddTab extends Tab {
 
-    private ExpenseTracker expenseTracker;
+    private final ExpenseTracker expenseTracker;
 
     private JComboBox expenseChoice;
     private Label amount;
@@ -100,6 +100,8 @@ public class AddTab extends Tab {
         add(category);
         add(categoryChoice);
         add(submitButton);
+
+        setPreferredSize(new Dimension(ExpenseTrackerGUI.WIDTH, ExpenseTrackerGUI.HEIGHT));
     }
 
     // MODIFIES: this, ExpenseTracker

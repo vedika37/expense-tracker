@@ -199,7 +199,7 @@ public class ExpenseTracker {
             transactionDescription = t.getNumber() + ". ";
             transactionDescription += " Description: " + t.getDescription();
 
-            transactionDescription += " Amount: " + t.getAmount();
+            transactionDescription += ", Amount: " + t.getAmount();
 
             transactionDescriptions.add(transactionDescription);
 

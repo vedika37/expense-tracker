@@ -1,7 +1,6 @@
 package ui.tabs;
 
 import model.Transaction;
-import model.TransactionList;
 import ui.ExpenseTracker;
 import ui.ExpenseTrackerGUI;
 
@@ -12,35 +11,41 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 
+/*
+ * Represents an Add Transactions Tab that allows the user to add a transaction to their account
+ * and play a sound whenever a transaction is successfully added
+ */
+
+// sources: Oracle Java Documentation - LabelDemo, ComboBoxDemo, ComboBoxDemo2, TextFieldDemo
+//          sound - http://suavesnippets.blogspot.com/2011/06/add-sound-on-jbutton-click-in-java.html
 public class AddTab extends Tab {
 
     private ExpenseTracker expenseTracker;
-    private TransactionList transactionList;
 
     private JComboBox expenseChoice;
-    private Label label;
+    private Label amount;
     private Label dollar;
     private JTextField field;
-    private Label labelCategory;
+    private Label category;
     private JComboBox categoryChoice;
     private Label description;
     private JTextField descriptionField;
-    private JButton button;
+    private JButton submitButton;
 
-    private Double balance;
     private ViewBalanceTab viewBalanceTab;
     private ViewTransactionsTab viewTransactionsTab;
 
 
+    // EFFECTS: creates a tab that allows users to add transactions to their account
     public AddTab(ExpenseTrackerGUI controller) {
         super(controller);
-        this.setBorder(BorderFactory.createEmptyBorder(0, 0, controller.HEIGHT, controller.WIDTH));
         expenseTracker = controller.getExpenseTracker();
-        transactionList = expenseTracker.getTl();
+
         setUpAddTab();
-        balance = expenseTracker.getTl().getBalance();
     }
 
+    // MODIFIES: this
+    // EFFECTS: sets up a tab allowing the user to input a transaction
     public void setUpAddTab() {
         setUpHelper();
 
@@ -53,43 +58,53 @@ public class AddTab extends Tab {
         description.setBounds(100, 170, 70, 30);
         descriptionField = new JTextField(5);
         descriptionField.setBounds(100, 200, 100, 30);
-        button = new JButton("Submit");
-        button.setBounds(150, 300, 100, 30);
+
+        submitButton = new JButton("Submit");
+        submitButton.setBounds(150, 300, 100, 30);
 
         addAllComponents();
 
         setLayout(null);
-        button.addActionListener(e -> guiMakeEntry());
+        submitButton.addActionListener(e -> guiAddTransaction());
     }
 
+    // MODIFIES: this
+    // EFFECTS: helper method for setting up the add transaction tab
     private void setUpHelper() {
         String[] expenseType = {"Expense", "Income"};
         expenseChoice = new JComboBox(expenseType);
         expenseChoice.setBounds(240, 130, 100, 30);
         expenseChoice.setLightWeightPopupEnabled(false);
-        label = new Label("Amount:");
-        label.setBounds(100, 100, 600, 30);
+
+        amount = new Label("Amount:");
+        amount.setBounds(100, 100, 600, 30);
+
         dollar = new Label("$");
         dollar.setBounds(80, 130, 20, 30);
+
         field = new JTextField(5);
         field.setBounds(100, 130, 100, 30);
-        labelCategory = new Label("Choose Category:");
-        labelCategory.setBounds(240, 170, 200, 30);
+
+        category = new Label("Choose Category:");
+        category.setBounds(240, 170, 200, 30);
     }
 
+    // EFFECTS: adds the components to the Add Transaction Tab
     private void addAllComponents() {
         add(expenseChoice);
-        add(label);
+        add(amount);
         add(dollar);
         add(field);
         add(description);
         add(descriptionField);
-        add(labelCategory);
+        add(category);
         add(categoryChoice);
-        add(button);
+        add(submitButton);
     }
 
-    private void guiMakeEntry() {
+    // MODIFIES: this, ExpenseTracker
+    // EFFECTS: adds the transaction entered by the user into the ExpenseTracker and plays a sound
+    private void guiAddTransaction() {
         if (!field.getText().isEmpty()) {
             Double amount = Double.parseDouble(field.getText());
             String category = (String) categoryChoice.getSelectedItem();
@@ -108,14 +123,17 @@ public class AddTab extends Tab {
         }
     }
 
+    // MODIFIES: ViewBalanceTab, ViewTransactionsTab
+    // EFFECTS:  updates the other panels when changes are made to this panel
     public void update() {
         viewBalanceTab = (ViewBalanceTab) getController().getViewBalanceTab();
         viewBalanceTab.displayBalanceTab();
 
-        viewTransactionsTab = (ViewTransactionsTab) getController().getViewTransactions();
+        viewTransactionsTab = (ViewTransactionsTab) getController().getViewTransactionsTab();
         viewTransactionsTab.displayTransactions();
     }
 
+    // EFFECTS: plays a sound
     public void playSound(String soundName) {
         try {
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(soundName).getAbsoluteFile());

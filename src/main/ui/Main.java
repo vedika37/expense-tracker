@@ -1,7 +1,7 @@
 package ui;
 
 /*
- *  Represents the main method where the user's account is created
+ *  Represents the main method where the user interface is created
  */
 
 public class Main {

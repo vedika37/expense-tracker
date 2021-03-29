@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /*
- * Represents an expense tracker application
+ * Represents an expense tracker application with a console based application
  */
 
 public class ExpenseTracker {
@@ -184,6 +184,7 @@ public class ExpenseTracker {
     }
 
 
+    // EFFECTS: returns a list of descriptions of all current transactions for the GUI
     public ArrayList<String> getTransactionDescriptions() {
         ArrayList<String> transactionDescriptions = new ArrayList<>();
 
@@ -209,9 +210,6 @@ public class ExpenseTracker {
 
         }
 
-//        transactionDescriptions.add("one");
-//        transactionDescriptions.add("two");
-//        transactionDescriptions.add("three");
         return transactionDescriptions;
     }
 
@@ -357,6 +355,7 @@ public class ExpenseTracker {
         }
     }
 
+    // EFFECTS: returns a list of transaction categories for the GUI
     public ArrayList<String> getCategories() {
         ArrayList<String> categories = new ArrayList<>();
 

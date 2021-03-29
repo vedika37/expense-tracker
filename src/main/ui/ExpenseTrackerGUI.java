@@ -4,6 +4,11 @@ import ui.tabs.*;
 
 import javax.swing.*;
 import java.awt.*;
+/*
+ * Represents the Graphical User Interface for the Expense Tracker application
+ */
+
+// source: CPSC 210 long-form-problem-starters -> SmartHome
 
 public class ExpenseTrackerGUI extends JFrame {
 
@@ -20,6 +25,7 @@ public class ExpenseTrackerGUI extends JFrame {
     private JPanel save;
 
 
+    //EFFECTS: creates ExpenseTrackerUI, displays sidebar and tabs
     public ExpenseTrackerGUI() {
         super("Expense Tracker");
 
@@ -37,6 +43,8 @@ public class ExpenseTrackerGUI extends JFrame {
         setVisible(true);
     }
 
+    //MODIFIES: this
+    //EFFECTS: adds a home tab, view balance tab, add transactions tab and view transactions tab to the UI
     public void addTabs() {
 
         home = new HomeTab(this);
@@ -61,24 +69,19 @@ public class ExpenseTrackerGUI extends JFrame {
         return expenseTracker;
     }
 
-    public JTabbedPane getSidebar() {
-        return sidebar;
-    }
-
     public JPanel getViewBalanceTab() {
         return balance;
     }
 
-
-    public JPanel getAddTransactions() {
+    public JPanel getAddTransactionsTab() {
         return addTransactions;
     }
 
-    public JPanel getViewTransactions() {
+    public JPanel getViewTransactionsTab() {
         return viewTransactions;
     }
 
-    public JPanel getSave() {
+    public JPanel getSaveTab() {
         return save;
     }
 }

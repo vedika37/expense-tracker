@@ -5,18 +5,26 @@ import ui.ExpenseTrackerGUI;
 import javax.swing.*;
 import java.awt.*;
 
+/*
+ * Represents a home tab with a greeting and button that allows the user to load transactions from file
+ */
+
+// source: Oracle Java Documentation - LabelDemo, ButtonDemo
 public class HomeTab extends Tab {
 
     JButton load;
     private ViewBalanceTab viewBalanceTab;
     private ViewTransactionsTab viewTransactionsTab;
 
+    //EFFECTS: constructs a home tab with a greeting and a load button
     public HomeTab(ExpenseTrackerGUI controller) {
         super(controller);
         displayWelcomeMessage();
         displayLoadButton();
     }
 
+
+    // EFFECTS: displays a welcome message on the screen
     public void displayWelcomeMessage() {
 
         String message = "Welcome to ExpenseTracker!";
@@ -25,11 +33,13 @@ public class HomeTab extends Tab {
         Dimension size = welcome.getPreferredSize();
         welcome.setBounds(135, 20, size.width, size.height);
 
-        this.setLayout(null);
-        this.add(welcome);
-        //this.setBackground(Color.cyan);
+        setLayout(null);
+        add(welcome);
+        //setBackground(Color.cyan);
     }
 
+    // MODIFIES: this, ExpenseTrackerGUI
+    // EFFECTS: displays a button that loads transactions from file when clicked
     public void displayLoadButton() {
         load = new JButton("Load");
         load.setBounds(130, 80, 100, 30);
@@ -42,6 +52,7 @@ public class HomeTab extends Tab {
         setVisible(true);
     }
 
+    // EFFECTS: loads transactions from file and displays a message if successful
     private void loadTransactions() {
         getController().getExpenseTracker().loadTransactionList();
         update();
@@ -54,11 +65,13 @@ public class HomeTab extends Tab {
         repaint();
     }
 
+    // MODIFIES: ViewBalanceTab, ViewTransactionsTab
+    // EFFECTS: updates the other panels when changes are made to this panel
     public void update() {
         viewBalanceTab = (ViewBalanceTab) getController().getViewBalanceTab();
         viewBalanceTab.displayBalanceTab();
 
-        viewTransactionsTab = (ViewTransactionsTab) getController().getViewTransactions();
+        viewTransactionsTab = (ViewTransactionsTab) getController().getViewTransactionsTab();
         viewTransactionsTab.displayTransactions();
     }
 }

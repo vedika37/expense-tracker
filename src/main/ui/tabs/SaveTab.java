@@ -4,15 +4,24 @@ import ui.ExpenseTrackerGUI;
 
 import javax.swing.*;
 
+/*
+ * Represents a tab that has a button that allows the user to save to file
+ */
+
+// source: Oracle Java Documentation - LabelDemo, ButtonDemo
+
 public class SaveTab extends Tab {
 
     private JButton save;
 
+    // EFFECTS: creates a Save Tab with a button allowing the user to save to file
     public SaveTab(ExpenseTrackerGUI controller) {
         super(controller);
         displaySaveButton();
     }
 
+    // MODIFIES: this
+    // EFFECTS: displays a button that saves the ExpenseTracker object to file when pressed
     public void displaySaveButton() {
         save = new JButton("Save");
         save.setBounds(130, 80, 100, 30);
@@ -25,6 +34,7 @@ public class SaveTab extends Tab {
         setVisible(true);
     }
 
+    // EFFECTS: saves transactions to file and displays a message if successful
     private void saveTransactions() {
         getController().getExpenseTracker().saveTransactionList();
         JLabel saved = new JLabel("Transactions saved!");

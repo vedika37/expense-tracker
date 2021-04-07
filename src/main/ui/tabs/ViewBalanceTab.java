@@ -19,12 +19,13 @@ public class ViewBalanceTab extends Tab {
     // EFFECTS: constructs a View Balance Tab that displays user balance
     public ViewBalanceTab(ExpenseTrackerGUI controller) {
         super(controller);
-        displayBalanceTab();
+        setup();
     }
 
     // MODIFIES: this
     // EFFECTS: displays the balance in the user's account on the screen
-    public void displayBalanceTab() {
+    @Override
+    public void setup() {
         removeAll();
         balance = getController().getExpenseTracker().getTl().getBalance();
         String balanceMessage = "Current Balance: ";
@@ -45,6 +46,7 @@ public class ViewBalanceTab extends Tab {
 
         revalidate();
         repaint();
+
     }
 }
 

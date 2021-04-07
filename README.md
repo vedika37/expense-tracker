@@ -20,3 +20,9 @@ This particular project was of interest to me because of its practicality and us
 - As a user, I want to be able to view the total balance in my account
 - As a user, I want to be able to save transactions to file
 - As a user, I want to be able to load my transaction list from file
+
+## Phase 4: Task 2
+The code has a type hierarchy - where an abstract class Tab has 5 subclasses that extend it - AddTab, HomeTab, SaveTab, 
+ViewBalanceTab and ViewTransactionsTab. These subclasses all represent a different kind of tab in the GUI and store
+information related to that particular tab. They all implement their own version of Tab's abstract setup() method,
+the functionality of which is to set the tab up by displaying the required text and buttons.

@@ -25,4 +25,8 @@ public abstract class Tab extends JPanel {
         return controller;
     }
 
+    // MODIFIES: this
+    // EFFECTS: abstract set up function for all the tabs
+    public abstract void setup();
+
 }

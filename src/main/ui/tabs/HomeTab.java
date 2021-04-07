@@ -20,6 +20,11 @@ public class HomeTab extends Tab {
     public HomeTab(ExpenseTrackerGUI controller) {
         super(controller);
 
+        setup();
+    }
+
+    @Override
+    public void setup() {
         displayWelcomeMessage();
         displayLoadButton();
     }
@@ -71,9 +76,9 @@ public class HomeTab extends Tab {
     // EFFECTS: updates the other panels when changes are made to this panel
     public void update() {
         viewBalanceTab = (ViewBalanceTab) getController().getViewBalanceTab();
-        viewBalanceTab.displayBalanceTab();
+        viewBalanceTab.setup();
 
         viewTransactionsTab = (ViewTransactionsTab) getController().getViewTransactionsTab();
-        viewTransactionsTab.displayTransactions();
+        viewTransactionsTab.setup();
     }
 }

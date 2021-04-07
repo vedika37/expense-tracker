@@ -43,12 +43,13 @@ public class AddTab extends Tab {
         super(controller);
         expenseTracker = controller.getExpenseTracker();
         transactionList = expenseTracker.getTl();
-        setUpAddTab();
+        setup();
     }
 
     // MODIFIES: this
     // EFFECTS: sets up a tab allowing the user to input a transaction
-    public void setUpAddTab() {
+    @Override
+    public void setup() {
         setUpHelper();
 
         Object[] categories = expenseTracker.getCategories().toArray();
@@ -122,7 +123,7 @@ public class AddTab extends Tab {
 
             playSound("./data/kaching.wav");
             removeAll();
-            setUpAddTab();
+            setup();
             revalidate();
             repaint();
 
@@ -135,10 +136,10 @@ public class AddTab extends Tab {
     // EFFECTS:  updates the other panels when changes are made to this panel
     public void update() {
         viewBalanceTab = (ViewBalanceTab) getController().getViewBalanceTab();
-        viewBalanceTab.displayBalanceTab();
+        viewBalanceTab.setup();
 
         viewTransactionsTab = (ViewTransactionsTab) getController().getViewTransactionsTab();
-        viewTransactionsTab.displayTransactions();
+        viewTransactionsTab.setup();
     }
 
     // EFFECTS: plays a sound
@@ -153,5 +154,4 @@ public class AddTab extends Tab {
             ex.printStackTrace();
         }
     }
-
 }

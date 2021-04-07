@@ -21,13 +21,14 @@ public class ViewTransactionsTab extends Tab {
     public ViewTransactionsTab(ExpenseTrackerGUI controller) {
         super(controller);
 
-        displayTransactions();
+        setup();
 
     }
 
     // MODIFIES: this
     // EFFECTS: displays transactions currently saved to the user's account
-    public void displayTransactions() {
+    @Override
+    public void setup() {
         removeAll();
 
         transactionDescriptions = getController().getExpenseTracker().getTransactionDescriptions();
@@ -57,6 +58,5 @@ public class ViewTransactionsTab extends Tab {
         revalidate();
         repaint();
     }
-
 
 }

@@ -22,7 +22,6 @@ import java.io.File;
 public class AddTab extends Tab {
 
     private ExpenseTracker expenseTracker;
-    private TransactionList transactionList;
 
     private JComboBox expenseChoice;
     private Label amountLabel;
@@ -42,7 +41,6 @@ public class AddTab extends Tab {
     public AddTab(ExpenseTrackerGUI controller) {
         super(controller);
         expenseTracker = controller.getExpenseTracker();
-        transactionList = expenseTracker.getTl();
         setup();
     }
 

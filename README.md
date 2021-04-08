@@ -26,3 +26,13 @@ The code has a type hierarchy - where an abstract class Tab has 5 subclasses tha
 ViewBalanceTab and ViewTransactionsTab. These subclasses all represent a different kind of tab in the GUI and store
 information related to that particular tab. They all implement their own version of Tab's abstract setup() method,
 the functionality of which is to set the tab up by displaying the required text and buttons.
+
+## Phase 4: Task 3
+My UML class diagram has a lot of associations that can be simplified if I improve the design of my code.
+
+If I had more time, I would have improved my design by refactoring my code to include the Observer Design Pattern - the 
+classes ViewBalanceTab and ViewTransactionsTab act as observers to AddTab and HomeTab and need to be updated every time 
+there are changes made to them. Although my code already does this, it could have been done in a better way, with lower 
+coupling (if something were to change in one of the subjects, all its observers would be notified) and higher cohesion
+ (every class would have a single responsibility) if I had implemented the Observer Pattern. 
+
